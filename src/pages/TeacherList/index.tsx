@@ -14,6 +14,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "./styles";
 import TeacherItem, { Teacher } from "../../components/TeacherItem";
 import api from "../../services/api";
+import { useFocusEffect } from "@react-navigation/native";
 
 function TeacherList() {
     const [teachers, setTeachers] = useState<Teacher[]>([]);
@@ -30,6 +31,10 @@ function TeacherList() {
             setFavorites(favoritedTeachersIds);
         });
     }
+
+    useFocusEffect(() => {
+        loadFavorites();
+    });
 
     const [subject, setSubject] = useState("");
     const [week_day, setWeekDay] = useState("");
